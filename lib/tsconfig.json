@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "lib": ["ESNext", "DOM"],
+    "module": "ESNext",
+    "outDir": "./dist",
+    "declaration": false,
+    "declarationMap": false,
+    "experimentalDecorators": true,
+    "noImplicitOverride": false,
+    "isolatedModules": false
+  },
+  "exclude": ["node_modules"]
+}

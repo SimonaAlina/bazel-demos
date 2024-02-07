@@ -1,0 +1,7 @@
+{
+  "name": "@private/my-wasm",
+  "private": true,
+  "devDependencies": {
+    "clang-format": "1.5.0"
+  }
+}
