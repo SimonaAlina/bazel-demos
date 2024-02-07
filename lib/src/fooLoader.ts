@@ -1,7 +1,7 @@
-import { Foo, FooInit } from "./foo.js";
+import { Foo, FooInit } from "./foo";
 
-export class SimpleLoader<ResultType> {
-  constructor(protected readonly executeLoad: () => Promise<ResultType>) {}
+export abstract class SimpleLoader<ResultType> {
+  protected abstract executeLoad(): Promise<ResultType>;
 }
 
 export class FooLoader extends SimpleLoader<Foo> {
@@ -12,12 +12,12 @@ export class FooLoader extends SimpleLoader<Foo> {
       return Promise.resolve(FooLoader._fooModule);
     }
 
-    const init = (await import("../node_modules/@private/wasm/demo.js")) as FooInit;
+    const init = (await import("../node_modules/@private/my-wasm/wasm.bin/demo.js")) as FooInit;
     const fooModule: Foo = await init.default({
       locateFile(path: string) {
         if (path.endsWith(".wasm")) {
           return new URL(
-            "../node_modules/@private/wasm/demo.wasm",
+            "../node_modules/@private/my-wasm/wasm.bin/demo.wasm",
             import.meta.url
           ).href;
         } else {
