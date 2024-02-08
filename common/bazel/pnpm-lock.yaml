@@ -12,12 +12,18 @@ importers:
         specifier: 4.8.4
         version: 4.8.4
 
-  lib:
+  ../../lib:
     dependencies:
       '@private/my-wasm':
         specifier: workspace:*
         version: link:../wasm
+      tslib:
+        specifier: 2.4.0
+        version: 2.4.0
     devDependencies:
+      '@private/my-tool':
+        specifier: workspace:*
+        version: link:../tools/my-tool
       '@types/emscripten':
         specifier: 1.39.6
         version: 1.39.6
@@ -25,7 +31,17 @@ importers:
         specifier: 4.8.4
         version: 4.8.4
 
-  wasm:
+  ../../tools/my-tool:
+    dependencies:
+      tslib:
+        specifier: 2.4.0
+        version: 2.4.0
+    devDependencies:
+      typescript:
+        specifier: 4.8.4
+        version: 4.8.4
+
+  ../../wasm:
     devDependencies:
       clang-format:
         specifier: 1.5.0
@@ -142,6 +158,10 @@ packages:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
     dev: true
+
+  /tslib@2.4.0:
+    resolution: {integrity: sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==}
+    dev: false
 
   /typescript@4.8.4:
     resolution: {integrity: sha512-QCh+85mCy+h0IGff8r5XWzOVSbBO+KfeYrMQh7NJ58QujwcE22u+NUSmUxqF+un70P9GXKxa2HCNiTTMJknyjQ==}

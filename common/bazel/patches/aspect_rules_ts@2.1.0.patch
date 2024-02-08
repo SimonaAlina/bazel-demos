@@ -1,0 +1,15 @@
+diff --git a/ts/private/ts_config.bzl b/ts/private/ts_config.bzl
+index af6227c..c3505b6 100644
+--- a/ts/private/ts_config.bzl
++++ b/ts/private/ts_config.bzl
+@@ -173,8 +173,8 @@ def write_tsconfig(name, config, files, out, extends = None, allow_js = None, re
+         resolve_json_module: value of the resolveJsonModule tsconfig property
+         **kwargs: Other common named parameters such as `tags` or `visibility`
+     """
+-    if out.find("/") >= 0:
+-        fail("tsconfig should be generated in the package directory, to make relative pathing simple")
++    # if out.find("/") >= 0:
++    #     fail("tsconfig should be generated in the package directory, to make relative pathing simple")
+ 
+     if extends:
+         config["extends"] = "__extends__"

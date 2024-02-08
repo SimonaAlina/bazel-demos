@@ -5,20 +5,6 @@ load("@aspect_rules_js//npm:defs.bzl", "npm_package")
 
 npm_link_all_packages(name = "node_modules")
 
-filegroup(
-    name = "srcs",
-    srcs = [
-        "src/fibonacci.cpp",
-    ],
-)
-
-filegroup(
-    name = "hdrs",
-    srcs = [
-        "src/fibonacci.h",
-    ],
-)
-
 BASE_COPTS = [
     "-Wall",
     "-Wc++17-extensions",
@@ -33,7 +19,9 @@ DEBUG_COPTS = [
     "-D DEBUG",
 ]
 
-COPTS = BASE_COPTS + DEBUG_COPTS
+RELEASE_COPTS = [
+    "-O3",
+]
 
 BASE_LINKOPTS = [
     "-Wno-deprecated-declarations",
@@ -62,7 +50,47 @@ DEBUG_LINKOPTS = [
     "-sSTACK_OVERFLOW_CHECK=2",
 ]
 
-LINKOPTS = BASE_LINKOPTS + DEBUG_LINKOPTS
+RELEASE_LINKOPTS = [
+    "-O3",
+]
+
+COPTS = select({
+    ":debug_opts": BASE_COPTS + DEBUG_COPTS,
+    ":release_opts": BASE_COPTS + RELEASE_COPTS,
+    "//conditions:default": BASE_COPTS + DEBUG_COPTS,
+})
+
+LINKOPTS = select({
+    ":debug_opts": BASE_LINKOPTS + DEBUG_LINKOPTS,
+    ":release_opts": BASE_LINKOPTS + RELEASE_LINKOPTS,
+    "//conditions:default": BASE_LINKOPTS + DEBUG_LINKOPTS,
+})
+
+config_setting(
+    name = "release_opts",
+    values = {"compilation_mode": "opt"},
+    visibility = ["//visibility:public"],
+)
+
+config_setting(
+    name = "debug_opts",
+    values = {"compilation_mode": "dbg"},
+    visibility = ["//visibility:public"],
+)
+
+filegroup(
+    name = "srcs",
+    srcs = [
+        "src/fibonacci.cpp",
+    ],
+)
+
+filegroup(
+    name = "hdrs",
+    srcs = [
+        "src/fibonacci.h",
+    ],
+)
 
 cc_library(
     name = "lib",
@@ -94,9 +122,9 @@ npm_package(
         "package.json",
         ":wasm.bin",
     ],
+    tags = ["top-level"],
     include_runfiles = False,  # copy_to_directory_action optimization
     include_transitive_declarations = False,  # copy_to_directory_action optimization
     include_transitive_sources = False,  # copy_to_directory_action optimization
-    package = "@private/my-wasm",
     visibility = ["//visibility:public"],
 )

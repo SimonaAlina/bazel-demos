@@ -1,0 +1,10 @@
+{
+  "name": "@private/my-tool",
+  "private": true,
+  "dependencies": {
+    "tslib": "2.4.0"
+  },
+  "devDependencies": {
+    "typescript": "4.8.4"
+  }
+}
