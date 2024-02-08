@@ -1,15 +1,8 @@
-load("@aspect_rules_ts//ts:defs.bzl", "ts_config")
 load("@npm//:defs.bzl", "npm_link_all_packages")
 load("//common/bazel:opt_ts.bzl", "opt_ts_project")
 load("@aspect_rules_js//npm:defs.bzl", "npm_package")
 
 npm_link_all_packages(name = "node_modules")
-
-ts_config(
-    name = "tsconfig",
-    src = "tsconfig.json",
-    visibility = [":__subpackages__"],
-)
 
 opt_ts_project(
     name = "ts",

@@ -1,4 +1,4 @@
-load("@aspect_rules_ts//ts:defs.bzl", "ts_config", "ts_project")
+load("@aspect_rules_ts//ts:defs.bzl", "ts_config")
 load("@npm//:defs.bzl", "npm_link_all_packages")
 load("@npm//tools/my-tool:typescript/package_json.bzl", cli = "bin")
 load("@aspect_rules_js//npm:defs.bzl", "npm_package")
@@ -44,9 +44,9 @@ npm_package(
         "package.json",
         ":ts",
     ],
-    tags = ["top-level"],
     include_runfiles = False,  # copy_to_directory_action optimization
     include_transitive_declarations = False,  # copy_to_directory_action optimization
     include_transitive_sources = False,  # copy_to_directory_action optimization
+    tags = ["top-level"],
     visibility = ["//visibility:public"],
 )
