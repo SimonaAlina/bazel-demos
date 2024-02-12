@@ -1,6 +1,10 @@
 startup --host_jvm_args=-DBAZEL_TRACK_SOURCE_DIRECTORIES=1
 
 build --enable_runfiles
+build --nolegacy_external_runfiles
+build --incompatible_enable_cc_toolchain_resolution
+common --enable_bzlmod 
+
 
 common --@aspect_rules_ts//ts:default_to_tsc_transpiler
 common --@aspect_rules_ts//ts:skipLibCheck=honor_tsconfig

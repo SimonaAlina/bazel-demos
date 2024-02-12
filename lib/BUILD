@@ -1,5 +1,6 @@
 load("@npm//:defs.bzl", "npm_link_all_packages")
 load("//common/bazel:opt_ts.bzl", "opt_ts_project")
+load("@aspect_rules_js//js:defs.bzl", "js_run_binary", "js_binary")
 load("@aspect_rules_js//npm:defs.bzl", "npm_package")
 
 npm_link_all_packages(name = "node_modules")
@@ -38,10 +39,26 @@ opt_ts_project(
     ],
 )
 
+js_binary(
+    name = "custom_binary",
+    entry_point = ":scripts/custom.mjs",
+    data = [":node_modules/@private/my-tool"],
+)
+
+
+js_run_binary(
+    name = "custom",
+    srcs = [":node_modules/@private/my-tool"],
+    chdir = package_name(),
+    outs = ["custom/tool.json"],
+    tool = ":custom_binary",
+)
+
 npm_package(
     name = "lib",
     srcs = [
         "package.json",
+        ":custom",
         ":ts",
     ] + glob(["src/**/*.ts"]),
     include_runfiles = False,  # copy_to_directory_action optimization

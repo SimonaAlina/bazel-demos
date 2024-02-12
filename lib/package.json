@@ -1,6 +1,8 @@
 {
   "name": "@private/my-lib",
   "private": true,
+  "main": "./dist/foo.js",
+  "type": "module",
   "dependencies": {
     "@private/my-wasm": "workspace:*",
     "tslib": "2.4.0"

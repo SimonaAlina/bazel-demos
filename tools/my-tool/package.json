@@ -1,6 +1,8 @@
 {
   "name": "@private/my-tool",
-  "private": true,
+  "main": "./dist/index.js",
+  "types": "./index.d.ts",
+  "type": "module",
   "dependencies": {
     "tslib": "2.4.0"
   },

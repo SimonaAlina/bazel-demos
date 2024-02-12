@@ -20,6 +20,7 @@ opt_ts_project(
     ],
     out_dir = "dist",
     root_dir = "src",
+    declaration = True,
     tsconfig = ":tsconfig",
     deps = [":node_modules/tslib"],
 )
@@ -43,7 +44,7 @@ npm_package(
     srcs = [
         "package.json",
         ":ts",
-    ],
+    ] + glob(["src/**/*.ts"]),
     include_runfiles = False,  # copy_to_directory_action optimization
     include_transitive_declarations = False,  # copy_to_directory_action optimization
     include_transitive_sources = False,  # copy_to_directory_action optimization

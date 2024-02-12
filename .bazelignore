@@ -1,0 +1,4 @@
+
+common/bazel/node_modules
+lib/node_modules
+tools/my-tool/node_modules
