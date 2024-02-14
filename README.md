@@ -2,9 +2,10 @@
 
 Playground for Bazel - Typescript - transitions related examples.
 
-### With_cfg without reset feature
+### with_cfg without reset feature
 
-Cases:
+##### Cases:
+
 1.
 `bazel build //lib1` and `bazel build //lib2:ts` generate the following error:
 
@@ -34,9 +35,11 @@ FAILED: Build did NOT complete successfully (0 packages loaded, 0 targets config
 `bazel build //lib2:ts` and `bazel build //tools/my-tool:ts` and `bazel build //tools/my-tool:ts` are working fine.
 
 
-### With_cfg with reset feature
+### with_cfg with reset feature
 
-Uncomment the lines commented from `common/bazel/opt_ts.bzl` for enabling reset features on `deps` attribute for ts_project. I may found 2 possible bugs:
+Uncomment the lines commented from `common/bazel/opt_ts.bzl` for enabling reset features on `deps` attribute for ts_project. 
+
+I may have found two possible bugs:
 
 1. `cannot encode CompilationMode as JSON` error:
 
@@ -55,7 +58,7 @@ INFO: 0 processes.
 FAILED: Build did NOT complete successfully (1 packages loaded, 2 targets configured)
 ```
 
-2. `opt_ts_project_reset rule 'ts__deps_0' in package 'lib2' conflicts with existing opt_ts_project_reset rule`
+2. `opt_ts_project_reset rule 'ts__deps_0' in package 'lib2' conflicts with existing opt_ts_project_reset rule` error:
 ```
 simona@simonas-mbp bazel-demos % bazel build //lib2:ts
 ERROR: Traceback (most recent call last):
