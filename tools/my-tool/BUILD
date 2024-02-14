@@ -1,6 +1,5 @@
 load("@aspect_rules_ts//ts:defs.bzl", "ts_config")
 load("@npm//:defs.bzl", "npm_link_all_packages")
-load("@npm//tools/my-tool:typescript/package_json.bzl", cli = "bin")
 load("@aspect_rules_js//npm:defs.bzl", "npm_package")
 load("//common/bazel:opt_ts.bzl", "opt_ts_project")
 
@@ -12,7 +11,6 @@ ts_config(
     visibility = [":__subpackages__"],
 )
 
-# opt_ts_project(
 opt_ts_project(
     name = "ts",
     srcs = [
@@ -23,20 +21,6 @@ opt_ts_project(
     declaration = True,
     tsconfig = ":tsconfig",
     deps = [":node_modules/tslib"],
-)
-
-cli.tsc(
-    name = "tool",
-    srcs = [
-        "package.json",
-        "src/index.ts",
-        ":node_modules/tslib",
-        ":tsconfig",
-    ],
-    args = ["--showConfig"],
-    chdir = package_name(),
-    out_dirs = ["tool"],
-    silent_on_success = True,
 )
 
 npm_package(

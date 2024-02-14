@@ -5,6 +5,7 @@ load("@aspect_rules_js//npm:defs.bzl", "npm_package")
 
 npm_link_all_packages(name = "node_modules")
 
+# forced compilation_mode = opt
 opt_ts_project(
     name = "ts",
     srcs = [
@@ -33,8 +34,6 @@ opt_ts_project(
     validate = True,
     deps = [
         ":node_modules/@private/my-tool",
-        ":node_modules/@private/my-wasm",
-        ":node_modules/@types/emscripten",
         ":node_modules/tslib",
     ],
 )
@@ -45,7 +44,6 @@ js_binary(
     data = [":node_modules/@private/my-tool"],
 )
 
-
 js_run_binary(
     name = "custom",
     srcs = [":node_modules/@private/my-tool"],
@@ -55,7 +53,7 @@ js_run_binary(
 )
 
 npm_package(
-    name = "lib",
+    name = "lib2",
     srcs = [
         "package.json",
         ":custom",

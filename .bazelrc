@@ -8,14 +8,3 @@ common --enable_bzlmod
 
 common --@aspect_rules_ts//ts:default_to_tsc_transpiler
 common --@aspect_rules_ts//ts:skipLibCheck=honor_tsconfig
-
-build:path-mapper --modify_execution_info=TsProject=+supports-path-mapping
-aquery:path-mapper --modify_execution_info=TsProject=+supports-path-mapping
-build:path-mapper --worker_sandboxing
-build:path-mapper --noexperimental_worker_multiplex
-build:path-mapper --experimental_output_paths=strip
-
-# build:path-mapper --grpc_keepalive_time=30s
-# build:path-mapper --incompatible_strict_action_env
-# build:path-mapper --nolegacy_important_outputs
-# build:path-mapper --remote_download_toplevel

@@ -55,22 +55,3 @@ load("@aspect_rules_ts//ts:repositories.bzl", "rules_ts_dependencies")
 rules_ts_dependencies(
     ts_version_from = "//common/bazel:package.json",
 )
-
-http_archive(
-    name = "emsdk",
-    sha256 = "a882560a83cbacec67867e7ce6b00420d557e71c501b523d2ed956ded021f9b4",
-    strip_prefix = "emsdk-3.1.47/bazel",
-    url = "https://github.com/emscripten-core/emsdk/archive/refs/tags/3.1.47.tar.gz",
-)
-
-load("@emsdk//:deps.bzl", emsdk_deps = "deps")
-
-emsdk_deps()
-
-load("@emsdk//:emscripten_deps.bzl", emsdk_emscripten_deps = "emscripten_deps")
-
-emsdk_emscripten_deps(emscripten_version = "3.1.47")
-
-load("@emsdk//:toolchains.bzl", "register_emscripten_toolchains")
-
-register_emscripten_toolchains()

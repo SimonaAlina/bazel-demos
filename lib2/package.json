@@ -1,0 +1,13 @@
+{
+  "name": "@private/my-lib2",
+  "private": true,
+  "main": "./dist/foo.js",
+  "type": "module",
+  "dependencies": {
+    "tslib": "2.4.0"
+  },
+  "devDependencies": {
+    "@private/my-tool": "workspace:*",
+    "typescript": "4.8.4"
+  }
+}

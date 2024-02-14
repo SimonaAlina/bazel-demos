@@ -1,4 +1,4 @@
 packages:
   - ../../tools/my-tool
-  - ../../lib
-  - ../../wasm
+  - ../../lib1
+  - ../../lib2
