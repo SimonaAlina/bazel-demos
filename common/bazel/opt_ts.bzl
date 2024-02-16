@@ -8,6 +8,6 @@ _ts_project_builder = with_cfg(
     kind = ts_project,
     extra_providers = [JsInfo],
 ).set("compilation_mode", "opt")
-_ts_project_builder.resettable(Label(":ts_project_original_settings"))
-_ts_project_builder.reset_on_attrs("deps")
+# _ts_project_builder.resettable(Label(":ts_project_original_settings"))
+# _ts_project_builder.reset_on_attrs("deps")
 opt_ts_project, opt_ts_project_reset = _ts_project_builder.build()
